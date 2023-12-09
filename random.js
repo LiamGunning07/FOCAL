@@ -1,21 +1,30 @@
-// The function below is being defined and assigned to a variable myFunc!
-const myFunc = function() {
-  console.log('Hello from myFunc!');
-}
+class Person {
+  constructor(name, quirkyFact) {
+    this.name = name;
+    this.quirkyFact = quirkyFact;
+  }
 
-// We can now call myFunc() with the () syntax.
-myFunc()
-
-// We can also assign that value to other variables!
-const anotherVar = myFunc; 
-
-// And call them the same way
-anotherVar() // => Same as myFunc()!
-const someObject = {
-  foo: 1,
-  bar: function() {
-    console.log("hello!");
+  bio() {
+    return `My name is ${this.name} and here's my quirky fact: ${this.quirkyFact}`;
   }
 }
 
-someObject.bar();
+class Mentor extends Person {
+  // Mentor bios need to include a bit more info
+  bio() {
+    return `I'm a mentor at Lighthouse Labs. ${super.bio()}`;
+  }
+}
+
+class Student extends Person {
+  bio() {
+    return `I'm a student at Lighthouse Labs. ${super.bio()}`;
+  }
+}
+
+// DRIVER CODE
+
+const bob = new Mentor('Bob Ross', 'I like mountains way too much');
+console.log(bob.bio());
+const liam = new Student('Liam', 'I like to fish.');
+console.log(liam.bio());
